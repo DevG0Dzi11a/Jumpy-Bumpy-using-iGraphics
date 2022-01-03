@@ -3245,6 +3245,7 @@ struct Player player[1000], temp;
 void score_calc()
 {
 	fscanf(read_user, "%d",&user);
+	fclose(read_user);
 	for(int i=0; i<user;i++)
 	{
 		fscanf(r_scores,"%s %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d", &ps1[i].name, &ps1[i].score1, &ps1[i].score2, &ps1[i].score3, &ps1[i].score4, &ps1[i].score5, &ps2[i].score1, &ps2[i].score2, &ps2[i].score3, &ps2[i].score4, &ps2[i].score5, &ps3[i].score1, &ps3[i].score2, &ps3[i].score3, &ps3[i].score4, &ps3[i].score5);
@@ -3264,6 +3265,7 @@ void score_calc()
 			}
 		}
 	}
+	fclose(r_scores);
 
 }
 int score_axis =200;
@@ -3348,7 +3350,11 @@ void iDraw()
 	else if(sel_lev==4 && sel_op==1 && (dif_sel_op==1 || dif_sel_op==2 || dif_sel_op==3))l4_screen();//Level4
 	else if(sel_lev==5 && sel_op==1 && (dif_sel_op==1 || dif_sel_op==2 || dif_sel_op==3))l5_screen();//Level5
 	else if(sel_op==2)Op_scrn();//Options Screen
-	else if(sel_op==3)scoreboard();//Scoreboard Screen
+	else if(sel_op==3)
+	{
+			score_calc();
+			scoreboard();//Scoreboard Screen
+	}
 	else if(sel_op==4)h_screen();//Help Screen
 
 }
